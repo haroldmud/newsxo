@@ -9,5 +9,7 @@ const instanceRouter = createBrowserRouter(createRoutesFromElements(
   </Route>
 ))
 export default function Main(){
-  <RouterProvider router={instanceRouter}/>
+  return(
+    <RouterProvider router={instanceRouter}/>
+  )
 }

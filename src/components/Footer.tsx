@@ -1,7 +1,7 @@
 
 export default function Footer() {
   return (
-    <div className="flex md:justify-center justify-start bg-blue-500">
+    <div className="flex md:justify-center justify-start bg-blue-500 mt-4">
       <div className="text-white flex  w-fit md:flex-row flex-col gap-4 my-20 md:pl-auto pl-4">
         <h3 className="mb-4 font-bold ">Our fields:</h3>
         <div className="md:text-base">

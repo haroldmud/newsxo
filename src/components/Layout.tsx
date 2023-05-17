@@ -6,9 +6,7 @@ export default function Layout(){
   return(
     <section className='max-w-[80rem] mx-auto h-[100vh] flex flex-col justify-between'>
       <Header/>
-      <div className="border h-[100%]">
-        <Outlet/>
-      </div>
+      <Outlet/>
       <Footer/>
     </section>
   )
