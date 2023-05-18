@@ -6,3 +6,16 @@
 .color {
   background-color: rgba(186, 176, 176, 0.301);
 }
+
+.word{
+  -webkit-text-stroke: 0.5px black;
+  text-shadow: 0.01px black;
+}
+
+.img-container {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+  border: 5px solid #ffffff;
+  border-radius: 10px;
+}

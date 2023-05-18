@@ -9,6 +9,9 @@ const mainSlice = createSlice({
   reducers:{
     fetching: (state, actions)=>{
       state.value = actions.payload;
+    },
+    unique: (state, actions) =>{
+      state.value = actions.payload;
     }
   }
 })

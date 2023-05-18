@@ -5,8 +5,10 @@ import { Outlet } from "react-router-dom"
 export default function Layout(){
   return(
     <section className='max-w-[80rem] mx-auto h-[100vh] flex flex-col justify-between'>
+      <div>
       <Header/>
       <Outlet/>
+      </div>
       <Footer/>
     </section>
   )

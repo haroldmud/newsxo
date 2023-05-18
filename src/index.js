@@ -6,10 +6,12 @@ import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux'
 import { configureStore } from '@reduxjs/toolkit';
 import mainSlice from './features/mainSlice';
+import sourceSlide from './features/sourceSlide';
 
 const store = configureStore({
   reducer:{
     main : mainSlice,
+    source: sourceSlide,
   }
 })
 
