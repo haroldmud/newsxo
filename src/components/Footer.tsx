@@ -4,13 +4,16 @@ import { SlArrowLeft, SlArrowRight } from 'react-icons/sl'
 import { useSelector, useDispatch } from "react-redux";
 import { useRef } from "react";
 import SwiperCore, { Autoplay } from 'swiper';
-import { seeking } from "../features/sourceSlide";
+import { seeking } from "../features/sourceSlice";
 import { getSources } from "../api/data";
+import { naming } from "../features/nameSlice";
+import { Link } from "react-router-dom";
 
 SwiperCore.use([Autoplay]);
 export default function Footer() {
   const source = useSelector((prev:any)=> prev.source.value);
   const sourceDispatch = useDispatch()
+  const nameDispatch = useDispatch()
   const elementRef = useRef(null);
   const [arrowDisable, setArrowDisable] = useState(true);
   const handleHorizantalScroll = (element:any, speed:any, distance:any, step:any) => {
@@ -29,6 +32,10 @@ export default function Footer() {
     }, speed);
   };
 
+  const handleName=(value:string)=>{
+    nameDispatch(naming(value))
+  }
+
   useEffect(()=>{
     const handleSources=async ()=>{
       try{
@@ -40,6 +47,7 @@ export default function Footer() {
     }
     handleSources();
   },[sourceDispatch])
+
   return (
     <div className="bg-blue-500 mt-12">
       <div className="h-fit mt-4 mx-auto md:w-10/12 w-11/12">
@@ -57,7 +65,7 @@ export default function Footer() {
        
       <div className="img-container" ref={elementRef}>
         {source.map((placement:any, i:number) => (
-          <button className="h-fit whitespace-nowrap flex font-thin">{placement.name} <span className="my-auto px-2 text-blue-500"><GoPrimitiveDot/></span> <span></span></button>
+          <Link to='/publishers'  onClick={()=>{handleName(placement.id)}} className="h-fit whitespace-nowrap flex font-thin">{placement.name} <span className="my-auto px-2 text-blue-500"><GoPrimitiveDot/></span> <span></span></Link>
         ))}
       </div>
       <button

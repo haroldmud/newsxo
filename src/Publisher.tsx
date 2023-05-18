@@ -5,34 +5,38 @@ import { SlArrowLeft, SlArrowRight } from 'react-icons/sl'
 import { useEffect, useState } from "react"
 import SwiperCore, { Autoplay } from 'swiper';
 import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "../types/type";
+import { PublishState } from './types/type';
 import { Link } from 'react-router-dom';
-import { getNews } from '../api/data';
-import { fetching } from '../features/mainSlice';
+import { publishing } from './features/publisherSlice';
+import { NameState } from './types/type';
 
 SwiperCore.use([Autoplay]);
 
-export default function Body(){
-  const News:{}[] = useSelector((prev: RootState) => prev.main.value)
+export default function Publishers(){
+  const News:{}[] = useSelector((prev: PublishState) => prev.publish.value)
   const [slide, setSlide] = useState<any>();
+  const fetcher: string = useSelector((prev: NameState) => prev.name.value)
+  
   const dispatchNews = useDispatch()
   useEffect(()=>{
     const handleNews = async()=>{
       try{
-        const NewsResponse = await getNews()
-        dispatchNews(fetching(NewsResponse))
+        const Publisher: string = `https://news-proxy.netlify.app/api/everything?sources=${fetcher}&pageSize=10&apiKey=baeaedd25636413da23a335f6001fd67`
+        const response = await fetch(Publisher);
+        const publishData = await response.json();
+        dispatchNews(publishing(publishData.articles))
       }catch(err){
         console.error(err);
         
       }
     }
     handleNews();
-  },[dispatchNews])
+  },[fetcher, dispatchNews])
 
   return(
     <>
       <div className='md:w-9/12 w-11/12 mx-auto relative h-fit group'>
-        <h2 className='my-4 relative'><span className='text-blue-500 font-thin pr-2'>SPOTLIGHT</span><span className='rotate-45 border border-blue-500 h-3 w-3 absolute'></span></h2>
+        <h2 className='my-4 relative'><span className='text-blue-500 font-thin pr-2'>{fetcher}</span><span className='rotate-45 border border-blue-500 h-3 w-3 absolute'></span></h2>
        <Swiper
           breakpoints={{
             639: {
@@ -52,7 +56,7 @@ export default function Body(){
     
           >
               {
-              News.slice(0,5).map((item:any, index:number) => (
+              News?.slice(0,5)?.map((item:any, index:number) => (
                 <SwiperSlide key={index}>
                   <Link to={`/${index}`} className='flex relative md:h-[30rem] h-fit'>
                     <img src={item.urlToImage} className='md:group-hover:brightness-100 brightness-50 md:w-full object-cover' alt="" />
