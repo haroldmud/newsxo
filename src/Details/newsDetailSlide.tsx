@@ -21,7 +21,7 @@ export function HomeDetail(){
         <p className="md:text-xl pt-4 font-[300] ">{item.description}</p>
         
       </div>
-        <a href={item.url} target="_blank" className="bg-blue-500 p-4 font-bold text-white">Read More</a>
+        <a href={item.url} target="_blank" rel="noreferrer" className="bg-blue-500 p-4 font-bold text-white">Read More</a>
       </section>
     </>
   )

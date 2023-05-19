@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import mainSlice from "./mainSlice";
 
 const initial = [];
 
