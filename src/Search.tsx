@@ -9,12 +9,15 @@ import { SearchState } from './types/type';
 import { Link } from 'react-router-dom';
 import { searching } from './features/searchSlice';
 import { SearchNameState } from './types/type';
+import Error from './Error';
+import Loading from './components/Loading';
 
 SwiperCore.use([Autoplay]);
 
 export default function Search(){
   const News:{}[] = useSelector((prev: SearchState) => prev.search.value)
   const [slide, setSlide] = useState<any>();
+  const [loading, setLoading] = useState<boolean>(true)
   const searcher: string = useSelector((prev: SearchNameState) => prev.searchName.value)
   
   const dispatchNews = useDispatch()
@@ -25,14 +28,19 @@ export default function Search(){
         const response = await fetch(Publisher);
         const publishData = await response.json();
         dispatchNews(searching(publishData.articles))
+        setLoading(false)
       }catch(err){
-        console.error(err);
-        
+        setLoading(false)
       }
     }
     handleNews();
   },[searcher, dispatchNews])
 
+  if (loading) {
+    return(
+      <Loading/>
+    )
+  } else if(News){
   return(
     <>
       <div className='md:w-9/12 w-11/12 mx-auto relative h-fit group'>
@@ -102,5 +110,9 @@ export default function Search(){
       }
     </div>
     </>
-  )
+  )}else{
+    return(
+      <Error/>
+    )
+  }
 }

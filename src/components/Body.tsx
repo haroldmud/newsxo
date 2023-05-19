@@ -9,26 +9,35 @@ import { RootState } from "../types/type";
 import { Link } from 'react-router-dom';
 import { getNews } from '../api/data';
 import { fetching } from '../features/mainSlice';
+import Error from '../Error';
+import Loading from './Loading';
 
 SwiperCore.use([Autoplay]);
 
 export default function Body(){
   const News:{}[] = useSelector((prev: RootState) => prev.main.value)
   const [slide, setSlide] = useState<any>();
+  const [loading, setLoading] = useState<boolean>(true)
   const dispatchNews = useDispatch()
   useEffect(()=>{
     const handleNews = async()=>{
       try{
         const NewsResponse = await getNews()
         dispatchNews(fetching(NewsResponse))
+        setLoading(false)
       }catch(err){
-        throw new Error("an error occured")
+        setLoading(false)
       }
     }
     handleNews();
   },[dispatchNews])
 
-  return(
+  if (loading) {
+    return(
+     <Loading/>
+    )
+  } else if(News){
+    return(
     <>
       <div className=' md:w-9/12 w-11/12 mx-auto relative h-fit group'>
         <h2 className='my-4 relative'><span className='text-blue-500 font-thin pr-2'>SPOTLIGHT</span><span className='rotate-45 border border-blue-500 h-3 w-3 absolute'></span></h2>
@@ -98,4 +107,9 @@ export default function Body(){
     </div>
     </>
   )
+}else{
+  return(
+    <Error/>
+  )
+}
 }
