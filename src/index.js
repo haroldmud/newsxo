@@ -9,6 +9,8 @@ import mainSlice from "./features/mainSlice";
 import sourceSlice from "./features/sourceSlice";
 import nameSlice from "./features/nameSlice";
 import publisherSlice from "./features/publisherSlice";
+import searchNameSlice from "./features/searchNameSlice";
+import searchSlice from "./features/searchSlice";
 
 const store = configureStore({
   reducer: {
@@ -16,6 +18,8 @@ const store = configureStore({
     source: sourceSlice,
     name: nameSlice,
     publish: publisherSlice,
+    searchName: searchNameSlice,
+    search: searchSlice
   },
 });
 
