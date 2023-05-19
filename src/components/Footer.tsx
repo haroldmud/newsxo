@@ -10,7 +10,7 @@ import { naming } from "../features/nameSlice";
 import { Link } from "react-router-dom";
 
 SwiperCore.use([Autoplay]);
-export default function Footer() {
+export default function Footer(props:{href:string}) {
   const source = useSelector((prev:any)=> prev.source.value);
   const sourceDispatch = useDispatch()
   const nameDispatch = useDispatch()
@@ -30,6 +30,10 @@ export default function Footer() {
         setArrowDisable(false);
       }
     }, speed);
+  };
+  const scrollToTop = () => {
+    const headerElement:any = document.getElementById(props.href);
+    headerElement.scrollIntoView({ behavior: 'smooth' });
   };
 
   const handleName=(value:string)=>{
@@ -65,7 +69,10 @@ export default function Footer() {
        
       <div className="img-container" ref={elementRef}>
         {source.map((placement:any, i:number) => (
-          <Link to='/publishers'  onClick={()=>{handleName(placement.id)}} className="h-fit whitespace-nowrap flex font-thin">{placement.name} <span className="my-auto px-2 text-blue-500"><GoPrimitiveDot/></span> <span></span></Link>
+          <div className="h-fit whitespace-nowrap flex font-thin">
+            <Link  to='/publishers' onClick={()=>{handleName(placement.id); scrollToTop()}} >{placement.name}</Link>
+            <span className="my-auto px-2 text-blue-500"><GoPrimitiveDot/></span>
+          </div>
         ))}
       </div>
       <button

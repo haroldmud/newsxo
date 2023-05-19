@@ -3,7 +3,7 @@ import { CiSearch } from 'react-icons/ci'
 import { SlClose } from 'react-icons/sl'
 import { Link } from 'react-router-dom';
 
-export default function Header(){
+export default function Header(props:{id:string}){
   const [search, setSearch] = useState<boolean>(false);
 
   function handleSearch():void {
@@ -12,7 +12,7 @@ export default function Header(){
 
   return(
     <>
-    <header className="relative flex w-full justify-between border py-5 px-6">
+    <header id={props.id} className="relative flex w-full justify-between border py-5 px-6">
         <Link to='/' className='font-bold text-4xl wordy'>News<span className='text-blue-500 word'>X0</span></Link>
         <button onClick={handleSearch} className='md:border md:w-[30%] flex justify-between my-auto cursor-text md:bg-slate-200 pr-2'>
           <p className='my-auto md:block hidden pl-6 text-gray-400'>search newsXO</p>
