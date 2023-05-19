@@ -15,7 +15,7 @@ export default function Footer(props:{href:string}) {
   const sourceDispatch = useDispatch()
   const nameDispatch = useDispatch()
   const elementRef = useRef(null);
-  const [arrowDisable, setArrowDisable] = useState(true);
+  const [arrowDisable, setArrowDisable] = useState<boolean>(true);
   const handleHorizantalScroll = (element:any, speed:any, distance:any, step:any) => {
     let scrollAmount = 0;
     const slideTimer = setInterval(() => {
