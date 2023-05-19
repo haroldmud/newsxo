@@ -22,8 +22,7 @@ export default function Body(){
         const NewsResponse = await getNews()
         dispatchNews(fetching(NewsResponse))
       }catch(err){
-        console.error(err);
-        
+        throw new Error("an error occured")
       }
     }
     handleNews();
@@ -31,7 +30,7 @@ export default function Body(){
 
   return(
     <>
-      <div className='md:w-9/12 w-11/12 mx-auto relative h-fit group'>
+      <div className=' md:w-9/12 w-11/12 mx-auto relative h-fit group'>
         <h2 className='my-4 relative'><span className='text-blue-500 font-thin pr-2'>SPOTLIGHT</span><span className='rotate-45 border border-blue-500 h-3 w-3 absolute'></span></h2>
        <Swiper
           breakpoints={{
@@ -71,13 +70,13 @@ export default function Body(){
 
           <div className="flex absolute bottom-5 z-20 gap-4 md:right-8 right-2 h-fit">
             <SlArrowLeft
-              className="hover:text-blue-500 text-white  hover:cursor-pointer rounded-full h-10 text-xl w-10 p-2 bg-blue-500 hover:bg-blue-300"
+              className="hover:text-blue-500 animate-pulse group-hover:animate-none text-white  hover:cursor-pointer rounded-full h-10 text-xl w-10 p-2 bg-blue-500 hover:bg-blue-300"
               onClick={() => {
                 slide.slidePrev();
               }}
             />
             <SlArrowRight
-              className=" hover:text-blue-500 text-white  hover:cursor-pointer rounded-full h-10 text-xl w-10 p-2 bg-blue-500 hover:bg-blue-300"
+              className=" hover:text-blue-500 animate-pulse group-hover:animate-none text-white  hover:cursor-pointer rounded-full h-10 text-xl w-10 p-2 bg-blue-500 hover:bg-blue-300"
               onClick={() => {
                 slide.slideNext();
               }}
