@@ -90,7 +90,8 @@ export default function Search(){
             />
             <SlArrowRight
               className=" hover:text-blue-500 text-white  hover:cursor-pointer rounded-full h-10 text-xl w-10 p-2 bg-blue-500 hover:bg-blue-300"
-              onClick={() => {
+              
+            onClick={() => {
                 slide.slideNext();
               }}
             />
