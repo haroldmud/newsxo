@@ -68,7 +68,7 @@ export default function Footer(props:{href:string}) {
         </button>
        
       <div className="img-container" ref={elementRef}>
-        {source.map((placement:any, i:number) => (
+        {source?.map((placement:any, i:number) => (
           <div className="h-fit whitespace-nowrap flex font-thin">
             <Link  to='/publishers' onClick={()=>{handleName(placement.id); scrollToTop()}} >{placement.name}</Link>
             <span className="my-auto px-2 text-blue-500"><GoPrimitiveDot/></span>

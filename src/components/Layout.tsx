@@ -8,7 +8,7 @@ export default function Layout(){
       <div className="max-w-[80rem] mx-auto w-full sticky top-0 z-50 bg-white border-b">
          <Header id='fetcher'/>
       </div>
-      <div className='h-fit w-full bg-blue-500 text-[12px] sticky top-0 z-50 text-center text-white font-thin'>hope you're enjoying the journey with us  ❤ 
+      <div className='h-fit w-full bg-blue-500 text-[12px] sticky top-0 z-50 text-center text-white font-[300]'>hope you're enjoying the journey with us  ❤ 
     </div>
       <div className="max-w-[80rem] mx-auto">
       <Outlet/>

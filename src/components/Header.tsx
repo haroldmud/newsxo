@@ -4,12 +4,13 @@ import { SlClose } from 'react-icons/sl'
 import { Link } from 'react-router-dom';
 import { nameSearching } from '../features/searchNameSlice';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 export default function Header(props:{id:string}){
   const [search, setSearch] = useState<boolean>(false);
   const [nameSearch, setNameSearch] = useState<string>('')
   const searchDispatch = useDispatch();
-
+  const navigate = useNavigate();
   function handleSearch():void {
     setSearch(true);
   }
@@ -28,11 +29,11 @@ export default function Header(props:{id:string}){
         </button>
         <div className={`${search ? 'block' : 'hidden'} fixed h-[100vh] overflow-hidden color z-50 w-full top-0 left-0`}>
           <button onClick={()=>{setSearch(false)}} className='w-full'><SlClose className='mt-32 text-blue-500 mx-auto font-bold text-2xl'/></button>
-          <div className='border bg-white md:w-6/12 w-10/12 mx-auto mt-4 flex'>
+          <form onSubmit={(event)=>{event.preventDefault(); navigate('/search');handleNameSearch(); setSearch(false)}} className='border bg-white md:w-6/12 w-10/12 mx-auto mt-4 flex'>
             <CiSearch className='text-blue-500 text-4xl my-auto pl-2'/>
             <input onChange={(e)=> (setNameSearch(e.target.value))} placeholder='Search' type="search" className='h-full my-auto w-full outline-none p-4'/>
-            <Link to='/search' onClick={()=>{handleNameSearch(); setSearch(false)}}  className='bg-blue-500 px-4 py-4 text-white my-auto`'>search</Link>
-          </div>
+            <button className='bg-blue-500 px-4 py-4 text-white my-auto`'>search</button>
+          </form>
         </div>
       </header>
       
