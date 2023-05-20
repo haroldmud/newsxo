@@ -1,24 +1,41 @@
 export interface RootState{
-    main: any;
-    value: any;
+    main: {
+        value: NewsState[];
+    };
 }
 
 export interface NameState{
-    name: any;
-    value: any;
+    name: {
+        value: null | string;
+    };
 }
 
 export interface PublishState{
-    publish: any;
-    value: any;
+    publish: {
+        value: NewsState[];
+    };
 }
 
 export interface SearchState{
-    search: any;
-    value: any
+    search: {
+        value: NewsState[];
+    };
 }
 
 export interface SearchNameState{
-    searchName: any;
-    value: any;
+    searchName: {
+        value: null | string;
+    };
+}
+
+
+export interface NewsState{
+    source: { id: null | string | number, name: string };
+    author: string;
+    title: string;
+    description:string;
+    url:string;
+    urlToImage:string;
+    publishedAt:string;
+    content: string;
 }

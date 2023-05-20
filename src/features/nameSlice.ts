@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initial = null;
+const initial: null | string = null;
 
 const nameSlice = createSlice({
   name: 'name',
-  initialState: {value : initial},
+  initialState: {value: initial},
   reducers:{
     naming:(state,actions)=>{
       state.value = actions.payload;
