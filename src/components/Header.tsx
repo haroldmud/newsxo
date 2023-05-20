@@ -22,7 +22,7 @@ export default function Header(props:{id:string}){
   return(
     <>
     <header id={props.id} className="relative flex w-full justify-between py-5 px-6">
-        <Link to='/' className='font-bold text-4xl wordy '>News<span className='text-blue-300 '>X0</span></Link>
+        <Link to='/' className='bg-clip-text text-transparent bg-gradient-to-r from-blue-300 to-[#651bf2] text-4xl font-bold flex'>News<span className='text-blue-300 w-10'><img src="/favicon.ico" alt="" /></span></Link>
         <button onClick={handleSearch} className='md:border  md:w-[30%] flex justify-between my-auto cursor-text md:bg-slate-200 pr-2'>
           <p className='my-auto md:block hidden pl-6 text-gray-400'>search newsXO</p>
           <CiSearch className='text-4xl my-auto text-blue-500 font-bolder'/>

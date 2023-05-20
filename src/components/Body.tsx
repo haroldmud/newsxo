@@ -95,7 +95,7 @@ export default function Body(){
     </div>
     <div className='md:w-9/12 w-11/12 mx-auto container block md:hidden relative h-fit group animate-pulse'>
         <h2 className='my-4 relative'><span className='text-blue-500 font-[300] pr-2'>SPOTLIGHT</span><span className='rotate-45 border border-blue-500 h-3 w-3 absolute'></span></h2>
-        <img src={News[5].urlToImage} alt="" />
+        <img src={News[5]?.urlToImage} alt="" />
     </div>
     <div className='md:w-9/12 w-11/12 mx-auto container grid md:grid-cols-3 grid-cols-2 gap-4 mt-4'>
       {
