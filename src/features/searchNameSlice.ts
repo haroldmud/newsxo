@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const  initial = null;
+const  initial: null | string = null;
 
 const searchNameSlice =  createSlice({
   name: 'searchName',

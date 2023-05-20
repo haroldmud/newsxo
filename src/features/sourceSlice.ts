@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { NewsState } from "../types/type";
 
-const initial = [];
+const initial:NewsState[] = [];
 
 const sourceSlice = createSlice({
   name: 'source',

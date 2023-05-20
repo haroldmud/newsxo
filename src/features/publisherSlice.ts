@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { sampleArray } from "../api/data";
+import { NewsState } from "../types/type";
 
-const initial =sampleArray;
+const initial: NewsState[] =sampleArray;
 
 const publisherSlice = createSlice({
   name: 'fetching',
