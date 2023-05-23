@@ -21,7 +21,6 @@ export default function Footer(props:{href:string}) {
   const handleHorizantalScroll = (element:{scrollLeft: number}, speed:number, distance:number, step:number) => {
     let scrollAmount = 0;
     const slideTimer = setInterval(() => {
-      console.log(element)
       element.scrollLeft += step;
       scrollAmount += Math.abs(step);
       if (scrollAmount >= distance) {
