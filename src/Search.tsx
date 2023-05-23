@@ -67,7 +67,7 @@ export default function Search(){
               {
               News.slice(0,5).map((item:any, index:number) => (
                 <SwiperSlide key={index}>
-                  <Link to={`/${index}`} className='flex relative md:h-[30rem] h-[25rem] '>
+                  <Link to={`/search/${index}`} className='flex relative md:h-[30rem] h-[25rem] '>
                     <img src={item.urlToImage} className='md:group-hover:brightness-100 brightness-50 md:w-full object-cover' alt="" />
                     <div className='absolute z-20 bottom-0 md:group-hover:bg-blue-300 color md:bg-white  md:w-[40%] w-[70%] h-fit md:p-5 p-1 md:font-[300] md:group-hover:text-white md:text-black text-white font-bold text-left'>
                       <div className='md:text-auto text-[12px] text-blue-600 font-[300] flex  gap-4 md:mb-4'>
