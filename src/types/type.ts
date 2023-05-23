@@ -28,6 +28,11 @@ export interface SearchNameState{
     };
 }
 
+export interface SourceState{
+    source: {
+        value: [];
+    };
+}
 
 export interface NewsState{
     source: { id: null | string | number, name: string };
@@ -39,3 +44,5 @@ export interface NewsState{
     publishedAt:string;
     content: string;
 }
+
+export type sample = any; 

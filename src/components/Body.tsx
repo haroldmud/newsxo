@@ -17,7 +17,7 @@ SwiperCore.use([Autoplay]);
 
 export default function Body(){
   const News:NewsState[] = useSelector((prev: RootState) => prev.main.value)
-  const [slide, setSlide] = useState<any>();
+  const [slide, setSlide] = useState<null | SwiperCore>();
   const [loading, setLoading] = useState<boolean>(true)
   const dispatchNews = useDispatch()
   useEffect(()=>{
@@ -61,7 +61,7 @@ export default function Body(){
     
           >
               {
-              News.slice(0,5).map((item:any, index:number) => (
+              News.slice(0,5).map((item:NewsState, index: number) => (
                 <SwiperSlide key={index}>
                   <Link to={`/${index}`} className='flex relative md:h-[30rem] h-[25rem] '>
                     <img src={item.urlToImage} className='md:group-hover:brightness-100 brightness-50 md:w-full object-cover' alt="" />
@@ -82,13 +82,13 @@ export default function Body(){
             <SlArrowLeft
               className="hover:text-blue-500 animate-pulse group-hover:animate-none text-white  hover:cursor-pointer rounded-full md:h-10 h-6 text-xl md:w-10 w-6  p-2 bg-blue-500 hover:bg-blue-300"
               onClick={() => {
-                slide.slidePrev();
+                slide?.slidePrev();
               }}
             />
             <SlArrowRight
               className=" hover:text-blue-500 animate-pulse group-hover:animate-none text-white  hover:cursor-pointer rounded-full md:h-10 h-6 text-xl md:w-10 w-6  p-2 bg-blue-500 hover:bg-blue-300"
               onClick={() => {
-                slide.slideNext();
+                slide?.slideNext();
               }}
             />
           </div>
@@ -99,7 +99,7 @@ export default function Body(){
     </div>
     <div className='md:w-9/12 w-11/12 mx-auto container grid md:grid-cols-3 grid-cols-2 gap-4 mt-4'>
       {
-        News.map((item:any, index)=>
+        News.map((item:NewsState, index: number)=>
         <Link to={`/${index}`} key={index} className={`w-fit relative overflow-hidden group ${index ===1 ? 'row-span-2 h-full' : index === News.length-1 ? 'col-span-2  w-full' : ''} `}>
           <img src={item.urlToImage} className={`object-cover w-[310px]  group-hover:brightness-75 transition-transform duration-300 transform md:group-hover:scale-110 brightness-50 ${index ===1 ? 'h-full group-hover:rotate-2' : index === News.length-1 ? 'w-full h-[310px]' :'h-[310px] md:group-hover:rotate-6 '} `} alt="" />
           <div className='w-full absolute z-20 bottom-0 text-white px-4 py-2 border-t color'>

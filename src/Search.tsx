@@ -17,7 +17,7 @@ SwiperCore.use([Autoplay]);
 
 export default function Search(){
   const News:NewsState[] = useSelector((prev: SearchState) => prev.search.value)
-  const [slide, setSlide] = useState<any>();
+  const [slide, setSlide] = useState<null | SwiperCore>();
   const [loading, setLoading] = useState<boolean>(true)
   const searcher = useSelector((prev: SearchNameState) => prev.searchName.value)
 
@@ -65,7 +65,7 @@ export default function Search(){
     
           >
               {
-              News.slice(0,5).map((item:any, index:number) => (
+              News.slice(0,5).map((item:NewsState, index:number) => (
                 <SwiperSlide key={index}>
                   <Link to={`/search/${index}`} className='flex relative md:h-[30rem] h-[25rem] '>
                     <img src={item.urlToImage} className='md:group-hover:brightness-100 brightness-50 md:w-full object-cover' alt="" />
@@ -86,13 +86,13 @@ export default function Search(){
             <SlArrowLeft
               className="hover:text-blue-500 animate-pulse group-hover:animate-none text-white  hover:cursor-pointer rounded-full md:h-10 h-6 text-xl md:w-10 w-6  p-2 bg-blue-500 hover:bg-blue-300"
               onClick={() => {
-                slide.slidePrev();
+                slide?.slidePrev();
               }}
             />
             <SlArrowRight
               className=" hover:text-blue-500 animate-pulse group-hover:animate-none text-white  hover:cursor-pointer rounded-full md:h-10 h-6 text-xl md:w-10 w-6  p-2 bg-blue-500 hover:bg-blue-300"
               onClick={() => {
-                slide.slideNext();
+                slide?.slideNext();
               }}
             />
           </div>

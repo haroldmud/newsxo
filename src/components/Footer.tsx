@@ -8,17 +8,20 @@ import { seeking } from "../features/sourceSlice";
 import { getSources } from "../api/data";
 import { naming } from "../features/nameSlice";
 import { Link } from "react-router-dom";
+import { SourceState } from "../types/type";
+import { sample } from "../types/type";
 
 SwiperCore.use([Autoplay]);
 export default function Footer(props:{href:string}) {
-  const source = useSelector((prev:any)=> prev.source.value);
+  const source = useSelector((prev:SourceState)=> prev.source.value);
   const sourceDispatch = useDispatch()
   const nameDispatch = useDispatch()
-  const elementRef = useRef(null);
+  const elementRef:sample= useRef(null);
   const [arrowDisable, setArrowDisable] = useState<boolean>(true);
-  const handleHorizantalScroll = (element:any, speed:any, distance:any, step:any) => {
+  const handleHorizantalScroll = (element:{scrollLeft: number}, speed:number, distance:number, step:number) => {
     let scrollAmount = 0;
     const slideTimer = setInterval(() => {
+      console.log(element)
       element.scrollLeft += step;
       scrollAmount += Math.abs(step);
       if (scrollAmount >= distance) {
@@ -46,7 +49,7 @@ export default function Footer(props:{href:string}) {
           const sourceData = await getSources();
           sourceDispatch(seeking(sourceData))
       }catch(err){
-        console.error(err)
+        throw new Error('error')
       }
     }
     handleSources();
@@ -68,7 +71,7 @@ export default function Footer(props:{href:string}) {
         </button>
        
       <div className="img-container" ref={elementRef}>
-        {source?.map((placement:any, i:number) => (
+        {source?.map((placement:{id:string, name:string}, i:number) => (
           <div className="h-fit whitespace-nowrap flex font-thin">
             <Link  to='/publishers' onClick={()=>{handleName(placement.id); scrollToTop()}} >{placement.name}</Link>
             <span className="my-auto px-2 text-blue-500"><GoPrimitiveDot/></span>
