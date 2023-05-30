@@ -1,34 +1,13 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import "./index.css";
-import Main from "./components/Main";
-import reportWebVitals from "./reportWebVitals";
-import { Provider } from "react-redux";
-import { configureStore } from "@reduxjs/toolkit";
-import mainSlice from "./features/mainSlice";
-import sourceSlice from "./features/sourceSlice";
-import nameSlice from "./features/nameSlice";
-import publisherSlice from "./features/publisherSlice";
-import searchNameSlice from "./features/searchNameSlice";
-import searchSlice from "./features/searchSlice";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
 
-const store = configureStore({
-  reducer: {
-    main: mainSlice,
-    source: sourceSlice,
-    name: nameSlice,
-    publish: publisherSlice,
-    searchName: searchNameSlice,
-    search: searchSlice
-  },
-});
-
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <Main />
-    </Provider>
+    <App />
   </React.StrictMode>
 );
 
